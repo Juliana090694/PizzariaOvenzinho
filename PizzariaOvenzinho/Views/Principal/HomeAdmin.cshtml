@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "HomeAdmin";
+    Layout = "~/Views/Shared/TemplateAdmin.cshtml";
+    ViewBag.Admin = HttpContext.Current.Session["NomeAdmin"];
+}
+
+
+<h2 style="color:#fff;text-align:center;font-size:100px;font-family:Brush Script Std, Brush Script MT, cursive;">Ovenzinho</h2>
+<h2 style="color:#fff;text-align:center;font-size:50px;font-family:Brush Script Std, Brush Script MT, cursive;">Bem vindo @ViewBag.Admin!</h2>
+

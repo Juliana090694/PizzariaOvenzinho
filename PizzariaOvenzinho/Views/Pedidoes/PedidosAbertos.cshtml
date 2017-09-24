@@ -1,0 +1,92 @@
+﻿@model IEnumerable<PizzariaOvenzinho.Models.Pedido>
+
+@{
+    ViewBag.Title = "PedidosAbertos";
+    Layout = "~/Views/Shared/TemplateAdmin.cshtml";
+}
+
+<h2 style="color:#fff;text-align:center;font-size:50px;font-family:Brush Script Std, Brush Script MT, cursive;">Pedidos Abertos</h2>
+
+<table class="table table-striped table-hover "style="background-color:#fff;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnderecoCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroCasaCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefoneCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemVenda.Produtos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantidadeProdutos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flagStatus)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.flagStatus == "N")
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cep)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnderecoCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroCasaCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TelefoneCliente)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var produto in item.ItemVenda.Produtos)
+                        {
+                            <li>@Html.DisplayFor(modelItem => produto.Nome)</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemVenda.Produtos.Count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataPedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.flagStatus)
+                </td>
+                <td>
+                    @Html.ActionLink("Concluir", "MudarFlag", "Pedidoes", new { id = item.PedidoId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    }
+
+</table>

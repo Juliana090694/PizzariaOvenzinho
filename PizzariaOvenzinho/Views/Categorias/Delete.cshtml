@@ -1,0 +1,33 @@
+﻿@model PizzariaOvenzinho.Models.Categoria
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/TemplateAdmin.cshtml";
+}
+
+<h2 style="color:#fff;text-align:center;font-size:50px;font-family:Brush Script Std, Brush Script MT, cursive;">Deletar</h2>
+
+<h3 style="color:#fff;text-align:center;font-size:50px;font-family:Brush Script Std, Brush Script MT, cursive;">Quer mesmo deletar?</h3>
+<div>
+   
+    <hr />
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">@Html.DisplayNameFor(model => model.CategoriaNome)</h3>
+        </div>
+        <div class="panel-body">
+            @Html.DisplayFor(model => model.CategoriaNome)
+        </div>
+    </div>
+   
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+           @Html.ActionLink("Voltar a lista", "Index", "", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

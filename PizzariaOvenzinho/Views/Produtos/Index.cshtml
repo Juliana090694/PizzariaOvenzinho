@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PizzariaOvenzinho.Models.Produto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/TemplateAdmin.cshtml";
+}
+
+<h2 style="color:#fff;text-align:center;font-size:50px;font-family:Brush Script Std, Brush Script MT, cursive;">Listar Produtos</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar", "Create", null, new { @class = "btn btn-default" })
+</p>
+<table class="table table-striped table-hover" style="background-color:#fff;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.categoria.CategoriaNome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.imagem)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.categoria.CategoriaNome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @if (!item.imagem.IsEmpty())
+                {
+                    <img src="~/Imagens/@item.imagem" height="150" width="150" />
+                }
+                else
+                {
+                    <div>Não há imagem</div>
+                }
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ProdutoId },new { @class="btn btn-default"})|
+                @Html.ActionLink("Imagem", "AdicionarImagem", new { id = item.ProdutoId }, new { @class = "btn btn-default" }) |
+                 @Html.ActionLink("Deletar", "Delete", new { id = item.ProdutoId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

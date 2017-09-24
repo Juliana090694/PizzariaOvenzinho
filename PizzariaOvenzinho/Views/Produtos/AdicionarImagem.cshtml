@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Adicionar Imagem";
+    Layout = "~/Views/Shared/TemplateAdmin.cshtml";
+}
+
+
+<h2 style="color:#fff;text-align:center;font-size:50px;font-family:Brush Script Std, Brush Script MT, cursive;">Adicionar/Alterar Imagem</h2>
+
+@using (Html.BeginForm("CadastrarImagem", "Produtos",new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Post,
+                                                    new { enctype = "multipart/form-data" }))
+{
+    <label for="file" style="color:fff;">Upload de Imagem:</label>
+    <input type="file" name="file" id="file" style="width: 100%; color:fff;" />
+    <input type="submit" value="Upload" class="submit" />
+}
